@@ -6,6 +6,8 @@
 
 package org.lineageos.setupwizard.util;
 
+import static android.view.WindowManagerPolicyConstants.NAV_BAR_MODE_GESTURAL_OVERLAY;
+
 import static android.content.Context.MODE_PRIVATE;
 import static android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_DISABLED;
 import static android.content.pm.PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
@@ -20,7 +22,6 @@ import static com.google.android.setupcompat.util.ResultCodes.RESULT_SKIP;
 
 import static org.lineageos.setupwizard.SetupWizardApp.DISABLE_NAV_KEYS;
 import static org.lineageos.setupwizard.SetupWizardApp.ENABLE_RECOVERY_UPDATE;
-import static org.lineageos.setupwizard.SetupWizardApp.KEY_SEND_METRICS;
 import static org.lineageos.setupwizard.SetupWizardApp.LOGV;
 import static org.lineageos.setupwizard.SetupWizardApp.NAVIGATION_OPTION_KEY;
 import static org.lineageos.setupwizard.SetupWizardApp.UPDATE_RECOVERY_PROP;
@@ -272,14 +273,8 @@ public class SetupWizardUtils {
     }
 
     private static void handleEnableMetrics(Context context) {
-        Bundle privacyData = SetupWizardApp.getSettingsBundle();
-        if (privacyData != null
-                && privacyData.containsKey(KEY_SEND_METRICS)) {
-            LineageSettings.Secure.putInt(context.getContentResolver(),
-                    LineageSettings.Secure.STATS_COLLECTION,
-                    privacyData.getBoolean(KEY_SEND_METRICS)
-                            ? 1 : 0);
-        }
+        LineageSettings.Secure.putInt(context.getContentResolver(),
+                LineageSettings.Secure.STATS_COLLECTION, 0);
     }
 
     private static void handleNavKeys(Context context) {
@@ -300,16 +295,15 @@ public class SetupWizardUtils {
 
     private static void handleNavigationOption() {
         Bundle settingsBundle = SetupWizardApp.getSettingsBundle();
-        if (settingsBundle.containsKey(NAVIGATION_OPTION_KEY)) {
-            IOverlayManager overlayManager = IOverlayManager.Stub.asInterface(
-                    ServiceManager.getService(Context.OVERLAY_SERVICE));
-            String selectedNavMode = settingsBundle.getString(NAVIGATION_OPTION_KEY);
+        IOverlayManager overlayManager = IOverlayManager.Stub.asInterface(
+                ServiceManager.getService(Context.OVERLAY_SERVICE));
+        String selectedNavMode = settingsBundle.getString(NAVIGATION_OPTION_KEY,
+                NAV_BAR_MODE_GESTURAL_OVERLAY);
 
-            try {
-                overlayManager.setEnabledExclusiveInCategory(selectedNavMode,
-                        UserHandle.USER_CURRENT);
-            } catch (Exception ignored) {
-            }
+        try {
+            overlayManager.setEnabledExclusiveInCategory(selectedNavMode,
+                    UserHandle.USER_CURRENT);
+        } catch (Exception ignored) {
         }
     }
 

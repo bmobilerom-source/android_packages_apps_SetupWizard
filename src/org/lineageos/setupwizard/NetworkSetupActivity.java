@@ -33,6 +33,7 @@ public class NetworkSetupActivity extends SubBaseActivity {
             tryEnablingWifi();
         }
         Intent intent = new Intent(ACTION_SETUP_NETWORK);
+        intent.setPackage("com.android.settings");
         intent.putExtra(EXTRA_PREFS_SHOW_BUTTON_BAR, true);
         intent.putExtra(EXTRA_PREFS_SHOW_SKIP, true);
         intent.putExtra(EXTRA_PREFS_SHOW_SKIP_TV, true);

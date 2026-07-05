@@ -58,6 +58,8 @@ public abstract class BaseSetupWizardActivity extends AppCompatActivity implemen
             logActivityState("onCreate savedInstanceState=" + savedInstanceState);
         }
         super.onCreate(savedInstanceState);
+        // Keep display on during setup; default 30s timeout causes blank screen mid-wizard.
+        getWindow().addFlags(android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         mNextIntentResultLauncher = registerForActivityResult(
                 new StartDecoratedActivityForResult(),
                 BaseSetupWizardActivity.this::onNextIntentResult);

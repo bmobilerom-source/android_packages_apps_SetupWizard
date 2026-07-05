@@ -12,11 +12,8 @@ import static org.lineageos.setupwizard.SetupWizardApp.KEY_SEND_METRICS;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.UserHandle;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.TextView;
 
 import lineageos.hardware.LineageHardwareManager;
 import lineageos.providers.LineageSettings;
@@ -25,16 +22,9 @@ public class LineageSettingsActivity extends BaseSetupWizardActivity {
 
     private SetupWizardApp mSetupWizardApp;
 
-    private CheckBox mMetrics;
     private CheckBox mNavKeys;
 
     private boolean mSupportsKeyDisabler = false;
-
-    private final View.OnClickListener mMetricsClickListener = view -> {
-        boolean checked = !mMetrics.isChecked();
-        mMetrics.setChecked(checked);
-        mSetupWizardApp.getSettingsBundle().putBoolean(KEY_SEND_METRICS, checked);
-    };
 
     private final View.OnClickListener mNavKeysClickListener = view -> {
         boolean checked = !mNavKeys.isChecked();
@@ -48,33 +38,14 @@ public class LineageSettingsActivity extends BaseSetupWizardActivity {
         mSetupWizardApp = (SetupWizardApp) getApplication();
         setNextText(R.string.next);
 
-        String os_name = getString(R.string.os_name);
-        String privacyPolicy = getString(R.string.services_pp_explanation, os_name);
-        String privacyPolicyUri = getString(R.string.services_privacy_policy_uri);
-        String policySummary = getString(R.string.services_find_privacy_policy, privacyPolicyUri);
-        String servicesFullDescription = getString(R.string.services_full_description,
-                privacyPolicy, policySummary);
-        getGlifLayout().setDescriptionText(servicesFullDescription);
-
-        View metricsRow = findViewById(R.id.metrics);
-        metricsRow.setOnClickListener(mMetricsClickListener);
-        metricsRow.requestFocus();
-        String metricsHelpImproveLineage =
-                getString(R.string.services_help_improve_cm, os_name);
-        String metricsSummary = getString(R.string.services_metrics_label,
-                metricsHelpImproveLineage, os_name, os_name);
-        final SpannableStringBuilder metricsSpan = new SpannableStringBuilder(metricsSummary);
-        metricsSpan.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD),
-                0, metricsHelpImproveLineage.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        TextView metrics = findViewById(R.id.enable_metrics_summary);
-        metrics.setText(metricsSpan);
-        mMetrics = findViewById(R.id.enable_metrics_checkbox);
+        getGlifLayout().setDescriptionText(getString(R.string.setup_services_summary));
 
         View navKeysRow = findViewById(R.id.nav_keys);
         navKeysRow.setOnClickListener(mNavKeysClickListener);
         mNavKeys = findViewById(R.id.nav_keys_checkbox);
         mSupportsKeyDisabler = isKeyDisablerSupported(this);
         if (mSupportsKeyDisabler) {
+            navKeysRow.requestFocus();
             mNavKeys.setChecked(LineageSettings.System.getIntForUser(getContentResolver(),
                     LineageSettings.System.FORCE_SHOW_NAVBAR, 0, UserHandle.USER_CURRENT) != 0);
         } else {
@@ -86,7 +57,7 @@ public class LineageSettingsActivity extends BaseSetupWizardActivity {
     public void onResume() {
         super.onResume();
         updateDisableNavkeysOption();
-        updateMetricsOption();
+        mSetupWizardApp.getSettingsBundle().putBoolean(KEY_SEND_METRICS, false);
     }
 
     @Override
@@ -102,15 +73,6 @@ public class LineageSettingsActivity extends BaseSetupWizardActivity {
     @Override
     protected int getIconResId() {
         return R.drawable.ic_features;
-    }
-
-    private void updateMetricsOption() {
-        final Bundle myPageBundle = mSetupWizardApp.getSettingsBundle();
-        boolean metricsChecked =
-                !myPageBundle.containsKey(KEY_SEND_METRICS) || myPageBundle
-                        .getBoolean(KEY_SEND_METRICS);
-        mMetrics.setChecked(metricsChecked);
-        myPageBundle.putBoolean(KEY_SEND_METRICS, metricsChecked);
     }
 
     private void updateDisableNavkeysOption() {
