@@ -69,6 +69,17 @@
     <string name="services_metrics_label"><xliff:g id="name" example="Help improve BMobile">%1$s</xliff:g> by automatically sending diagnostic and usage data to <xliff:g id="name" example="BMobile">%2$s</xliff:g>. This information can’t be used to identify you and lends a hand to teams working on things like battery life, app performance, and new <xliff:g id="name" example="BMobile">%3$s</xliff:g> features.</string>
     <string name="services_os_nav_keys_label"><b>Use on screen navigation keys</b> instead of hardware keys.</string>
     <string name="services_full_description"><xliff:g id="pp_explanation">%1$s</xliff:g>\n<xliff:g id="pp_find">%2$s</xliff:g></string>
+    <string name="setup_features_optional_header">Optional setup</string>
+    <string name="setup_feature_microg_title">MicroG settings</string>
+    <string name="setup_feature_microg_summary">Configure open-source Google Play Services replacement</string>
+    <string name="setup_feature_dav_title">DAVx⁵ accounts</string>
+    <string name="setup_feature_dav_summary">Sync calendars and contacts with CalDAV and CardDAV</string>
+    <string name="setup_feature_monet_title">Monet color presets</string>
+    <string name="setup_feature_monet_summary">Pick a Material You color palette for your device</string>
+    <string name="setup_feature_open">Set up</string>
+    <string name="setup_feature_done">Done</string>
+    <string name="setup_feature_not_installed">%1$s is not installed on this device</string>
+    <string name="setup_feature_open_failed">Could not open %1$s</string>
 
     <!-- Navigation page -->
     <string name="setup_navigation">Navigation</string>
@@ -82,4 +93,12 @@
     <string name="theme_summary">Dark theme uses a black background to help keep battery alive longer on some screens</string>
     <string name="dark">Dark</string>
     <string name="light">Light</string>
+
+    <!-- BMobile intro carousel (replaces welcome) -->
+    <string name="intro_slide_welcome_title">Welcome to BMobile</string>
+    <string name="intro_slide_welcome_body">A privacy-first phone experience built for you — secure, open, and fully yours.</string>
+    <string name="intro_slide_privacy_title">Your phone, your rules</string>
+    <string name="intro_slide_privacy_body">No hidden telemetry in setup. Optional features only — change everything later in Settings.</string>
+    <string name="intro_slide_restore_title">Restore when you are ready</string>
+    <string name="intro_slide_restore_body">Bring back apps and data from a Seedvault backup, or start fresh and set up in minutes.</string>
 </resources>

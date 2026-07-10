@@ -5,4 +5,10 @@
 -->
 <resources>
     <color name="divider">#40ffffff</color>
+    <color name="setup_page_background">#101418</color>
+    <color name="setup_card_surface">#1B2128</color>
+    <color name="setup_card_stroke">#33FFFFFF</color>
+    <color name="setup_option_surface">#242B34</color>
+    <color name="setup_hero_circle">#33167C80</color>
+    <color name="setup_onboarding_body">#B3FFFFFF</color>
 </resources>

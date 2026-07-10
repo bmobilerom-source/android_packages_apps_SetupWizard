@@ -44,6 +44,10 @@ public class SetupWizardApp extends Application {
 
     public static final String NAVIGATION_OPTION_KEY = "navigation_option";
 
+    public static final String SETUP_FEATURE_MICROG_DONE = "setup_feature_microg_done";
+    public static final String SETUP_FEATURE_DAV_DONE = "setup_feature_dav_done";
+    public static final String SETUP_FEATURE_MONET_DONE = "setup_feature_monet_done";
+
     public static final int RADIO_READY_TIMEOUT = 10 * 1000;
 
     private static StatusBarManager sStatusBarManager;

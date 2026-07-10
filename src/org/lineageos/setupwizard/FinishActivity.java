@@ -210,6 +210,7 @@ public class FinishActivity extends BaseSetupWizardActivity {
             return;
         }
         anim.setDuration(900);
+        anim.setInterpolator(new android.view.animation.AccelerateDecelerateInterpolator());
         anim.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationStart(Animator animation) {

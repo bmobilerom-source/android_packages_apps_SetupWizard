@@ -27,13 +27,16 @@ public class NavigationLayout extends RelativeLayout {
 
     private final Button mNextButton;
     private final Button mSkipButton;
+    private final StepIndicatorView mStepIndicator;
 
     public NavigationLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         View.inflate(context, R.layout.navigation_layout, this);
         mNextButton = findViewById(R.id.navbar_next);
         mSkipButton = findViewById(R.id.navbar_skip);
+        mStepIndicator = findViewById(R.id.setup_step_indicator);
         FooterButtonStyleUtils.applyPrimaryButtonPartnerResource(context, mNextButton, true);
+        mNextButton.setBackgroundResource(R.drawable.setup_onboarding_pill_button);
         FooterButtonStyleUtils.applySecondaryButtonPartnerResource(context, mSkipButton, true);
 
         TypedArray a = context.getTheme().obtainStyledAttributes(
@@ -62,5 +65,11 @@ public class NavigationLayout extends RelativeLayout {
     public void setNavigationBarListener(NavigationBarListener listener) {
         mSkipButton.setOnClickListener(view -> listener.onSkip());
         mNextButton.setOnClickListener(view -> listener.onNavigateNext());
+    }
+
+    public void setSetupProgress(int activeStep, int stepCount) {
+        if (mStepIndicator != null) {
+            mStepIndicator.setProgress(activeStep, stepCount);
+        }
     }
 }

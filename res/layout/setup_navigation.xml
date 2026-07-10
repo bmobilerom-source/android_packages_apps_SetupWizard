@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
      SPDX-FileCopyrightText: 2022 The LineageOS Project
+     SPDX-FileCopyrightText: 2026 BMobile contributors
      SPDX-License-Identifier: Apache-2.0
 -->
 <com.google.android.setupdesign.GlifLayout
@@ -11,11 +12,11 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:orientation="vertical"
+        style="@style/SudContentFrame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        style="@style/SudContentFrame"
-        android:layout_marginTop="@dimen/base_margin_top">
+        android:layout_marginTop="@dimen/base_margin_top"
+        android:orientation="vertical">
 
         <FrameLayout
             android:id="@+id/page"
@@ -26,49 +27,64 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fillViewport="true">
+                android:clipToPadding="false"
+                android:fillViewport="true"
+                android:paddingBottom="@dimen/setup_card_margin_bottom">
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/setup_card_margin_horizontal"
+                    android:layout_marginTop="@dimen/setup_card_margin_top"
+                    android:layout_marginEnd="@dimen/setup_card_margin_horizontal"
+                    android:background="@drawable/setup_onboarding_card_bg"
+                    android:orientation="vertical"
+                    android:padding="@dimen/setup_card_padding">
 
                     <com.airbnb.lottie.LottieAnimationView
                         android:id="@+id/navigation_illustration"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:lottie_rawRes="@raw/lottie_system_nav_fully_gestural"
+                        android:layout_height="180dp"
                         app:lottie_autoPlay="true"
-                        app:lottie_loop="true" />
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/lottie_system_nav_fully_gestural" />
 
                     <RadioGroup
                         android:id="@+id/navigation_radio_group"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/setup_option_spacing"
+                        android:background="@drawable/setup_onboarding_option_bg"
+                        android:paddingStart="@dimen/setup_option_padding_horizontal"
+                        android:paddingTop="@dimen/setup_option_padding_vertical"
+                        android:paddingEnd="@dimen/setup_option_padding_horizontal"
+                        android:paddingBottom="@dimen/setup_option_padding_vertical">
 
                         <RadioButton
                             android:id="@+id/radio_gesture"
-                            android:text="@string/gesture_navigation"
+                            style="@style/SudRadioButton"
                             android:checked="true"
-                            style="@style/SudRadioButton" />
+                            android:text="@string/gesture_navigation" />
 
                         <RadioButton
                             android:id="@+id/radio_sw_keys"
-                            android:text="@string/navbar_navigation"
-                            style="@style/SudRadioButton" />
-
+                            style="@style/SudRadioButton"
+                            android:text="@string/navbar_navigation" />
                     </RadioGroup>
 
                     <CheckBox
                         android:id="@+id/hide_navigation_hint"
-                        android:layout_width="wrap_content"
+                        style="@style/SudCheckBox"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/hide_gesture_hint"
-                        android:layout_marginTop="0dp"
-                        android:layout_marginBottom="6dp"
-                        android:layout_marginLeft="-6dp"
-                        android:paddingLeft="18dp"
-                        style="@style/SudCheckBox" />
+                        android:layout_marginTop="@dimen/setup_option_spacing"
+                        android:background="@drawable/setup_onboarding_option_bg"
+                        android:paddingStart="@dimen/setup_option_padding_horizontal"
+                        android:paddingTop="@dimen/setup_option_padding_vertical"
+                        android:paddingEnd="@dimen/setup_option_padding_horizontal"
+                        android:paddingBottom="@dimen/setup_option_padding_vertical"
+                        android:text="@string/hide_gesture_hint" />
+
                 </LinearLayout>
             </ScrollView>
         </FrameLayout>
@@ -80,4 +96,3 @@
 
     </LinearLayout>
 </com.google.android.setupdesign.GlifLayout>
-

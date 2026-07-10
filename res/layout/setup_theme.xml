@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
      SPDX-FileCopyrightText: 2023 The LineageOS Project
+     SPDX-FileCopyrightText: 2026 BMobile contributors
      SPDX-License-Identifier: Apache-2.0
 -->
 <com.google.android.setupdesign.GlifLayout
@@ -10,11 +11,11 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:orientation="vertical"
+        style="@style/SudContentFrame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        style="@style/SudContentFrame"
-        android:layout_marginTop="@dimen/base_margin_top">
+        android:layout_marginTop="@dimen/base_margin_top"
+        android:orientation="vertical">
 
         <FrameLayout
             android:id="@+id/page"
@@ -25,24 +26,42 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fillViewport="true">
+                android:clipToPadding="false"
+                android:fillViewport="true"
+                android:paddingBottom="@dimen/setup_card_margin_bottom">
 
-                <RadioGroup
-                    android:id="@+id/theme_radio_group"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/setup_card_margin_horizontal"
+                    android:layout_marginTop="@dimen/setup_card_margin_top"
+                    android:layout_marginEnd="@dimen/setup_card_margin_horizontal"
+                    android:background="@drawable/setup_onboarding_card_bg"
+                    android:orientation="vertical"
+                    android:padding="@dimen/setup_card_padding">
 
-                    <RadioButton
-                        android:id="@+id/radio_dark"
-                        android:text="@string/dark"
-                        style="@style/SudRadioButton" />
+                    <RadioGroup
+                        android:id="@+id/theme_radio_group"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/setup_onboarding_option_bg"
+                        android:paddingStart="@dimen/setup_option_padding_horizontal"
+                        android:paddingTop="@dimen/setup_option_padding_vertical"
+                        android:paddingEnd="@dimen/setup_option_padding_horizontal"
+                        android:paddingBottom="@dimen/setup_option_padding_vertical">
 
-                    <RadioButton
-                        android:id="@+id/radio_light"
-                        android:text="@string/light"
-                        style="@style/SudRadioButton" />
+                        <RadioButton
+                            android:id="@+id/radio_dark"
+                            style="@style/SudRadioButton"
+                            android:text="@string/dark" />
 
-                </RadioGroup>
+                        <RadioButton
+                            android:id="@+id/radio_light"
+                            style="@style/SudRadioButton"
+                            android:text="@string/light" />
+                    </RadioGroup>
+
+                </LinearLayout>
             </ScrollView>
         </FrameLayout>
 

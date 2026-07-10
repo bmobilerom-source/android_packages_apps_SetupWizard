@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 BMobile contributors
+     SPDX-License-Identifier: Apache-2.0
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="@dimen/setup_hero_size"
+        android:layout_height="@dimen/setup_hero_size"
+        android:background="@drawable/setup_onboarding_hero_circle">
+
+        <ImageView
+            android:id="@+id/setup_hero_icon"
+            android:layout_width="@dimen/setup_hero_icon_size"
+            android:layout_height="@dimen/setup_hero_icon_size"
+            android:layout_gravity="center"
+            android:importantForAccessibility="no"
+            android:scaleType="centerInside" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/setup_hero_body"
+        style="@style/SetupOnboardingCardBody"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/setup_card_section_spacing"
+        android:gravity="center" />
+
+</LinearLayout>

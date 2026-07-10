@@ -11,3 +11,9 @@ path = ["res/raw/lottie_system_nav_2_button.json", "res/raw/lottie_system_nav_3_
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2019 The Android Open Source Project"
 SPDX-License-Identifier = "Apache-2.0"
+
+[[annotations]]
+path = ["res/raw/intro_welcome.json", "res/raw/intro_restore.json"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "shubhamhackz/animated_onboarding contributors"
+SPDX-License-Identifier = "MIT"

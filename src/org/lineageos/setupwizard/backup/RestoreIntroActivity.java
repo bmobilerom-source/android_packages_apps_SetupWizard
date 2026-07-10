@@ -23,8 +23,10 @@ public class RestoreIntroActivity extends SubBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getGlifLayout().setDescriptionText(getString(R.string.intro_restore_subtitle,
-                getString(R.string.os_name)));
+        final android.widget.TextView hint = findViewById(R.id.restore_card_hint);
+        if (hint != null) {
+            hint.setText(getString(R.string.intro_restore_subtitle, getString(R.string.os_name)));
+        }
     }
 
     @Override

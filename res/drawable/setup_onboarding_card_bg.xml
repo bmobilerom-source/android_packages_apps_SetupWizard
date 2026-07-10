@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 BMobile contributors
+     SPDX-License-Identifier: Apache-2.0
+     Inspired by ahoy-onboarding CardView margins and corner treatment.
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <solid android:color="@color/setup_card_surface" />
+    <corners android:radius="@dimen/setup_card_corner_radius" />
+    <stroke
+        android:width="1dp"
+        android:color="@color/setup_card_stroke" />
+</shape>

@@ -54,6 +54,8 @@ import android.util.Log;
 import lineageos.hardware.LineageHardwareManager;
 import lineageos.providers.LineageSettings;
 
+import com.google.android.setupdesign.transition.TransitionHelper;
+
 import org.lineageos.setupwizard.BaseSetupWizardActivity;
 import org.lineageos.setupwizard.SetupWizardApp;
 
@@ -72,6 +74,18 @@ public class SetupWizardUtils {
     private static final String UPDATE_RECOVERY_EXEC = "/vendor/bin/install-recovery.sh";
     private static final String CONFIG_HIDE_RECOVERY_UPDATE = "config_hideRecoveryUpdate";
     private static final String PROP_BUILD_DATE = "ro.build.date.utc";
+
+    public static final int SETUP_GLIF_STEP_COUNT = 7;
+
+    private static final String[] SETUP_STEP_ACTION_IDS = {
+            "locale",
+            "network_setup",
+            "datetime",
+            "restore",
+            "location_settings",
+            "lineage_settings",
+            "finish",
+    };
 
     private SetupWizardUtils() {
     }
@@ -361,5 +375,31 @@ public class SetupWizardUtils {
                     == LTE_ON_CDMA_TRUE;
         }
         return lteOnCdmaMode == LTE_ON_CDMA_TRUE;
+    }
+
+    public static int getSetupStepIndex(String actionId) {
+        if (actionId == null) {
+            return -1;
+        }
+        for (int i = 0; i < SETUP_STEP_ACTION_IDS.length; i++) {
+            if (SETUP_STEP_ACTION_IDS[i].equals(actionId)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static int getTransitionTypeForAction(String actionId) {
+        if ("intro".equals(actionId)) {
+            return TransitionHelper.TRANSITION_SLIDE;
+        }
+        if ("locale".equals(actionId) || "datetime".equals(actionId)
+                || "location_settings".equals(actionId) || "lineage_settings".equals(actionId)) {
+            return TransitionHelper.TRANSITION_FADE;
+        }
+        if ("finish".equals(actionId)) {
+            return TransitionHelper.TRANSITION_FADE_THROUGH;
+        }
+        return TransitionHelper.TRANSITION_SLIDE;
     }
 }

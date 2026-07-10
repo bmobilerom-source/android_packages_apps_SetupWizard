@@ -12,6 +12,8 @@ import static androidx.activity.result.contract.ActivityResultContracts.StartAct
 
 import static com.google.android.setupcompat.util.ResultCodes.RESULT_SKIP;
 
+import static org.lineageos.setupwizard.SetupWizardApp.EXTRA_ACTION_ID;
+import static org.lineageos.setupwizard.SetupWizardApp.EXTRA_WIZARD_BUNDLE;
 import static org.lineageos.setupwizard.SetupWizardApp.LOGV;
 
 import android.annotation.NonNull;
@@ -40,6 +42,7 @@ import com.google.android.setupdesign.transition.TransitionHelper;
 import com.google.android.setupdesign.util.ThemeHelper;
 
 import org.lineageos.setupwizard.NavigationLayout.NavigationBarListener;
+import org.lineageos.setupwizard.util.SetupWizardAnimationHelper;
 import org.lineageos.setupwizard.util.SetupWizardUtils;
 
 public abstract class BaseSetupWizardActivity extends AppCompatActivity implements
@@ -51,6 +54,7 @@ public abstract class BaseSetupWizardActivity extends AppCompatActivity implemen
     private NavigationLayout mNavigationBar;
 
     private ActivityResultLauncher<Intent> mNextIntentResultLauncher;
+    private boolean mContentAnimated;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,6 +71,7 @@ public abstract class BaseSetupWizardActivity extends AppCompatActivity implemen
         mNavigationBar = getNavigationBar();
         if (mNavigationBar != null) {
             mNavigationBar.setNavigationBarListener(this);
+            updateSetupStepIndicator();
         }
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
@@ -103,6 +108,15 @@ public abstract class BaseSetupWizardActivity extends AppCompatActivity implemen
             logActivityState("onResume");
         }
         super.onResume();
+        if (!mContentAnimated) {
+            final View glifRoot = findViewById(R.id.setup_wizard_layout);
+            if (glifRoot instanceof GlifLayout) {
+                mContentAnimated = true;
+                if (SetupWizardAnimationHelper.areAnimationsEnabled(this)) {
+                    SetupWizardAnimationHelper.runGlifEntrance((GlifLayout) glifRoot, true);
+                }
+            }
+        }
     }
 
     @Override
@@ -336,12 +350,30 @@ public abstract class BaseSetupWizardActivity extends AppCompatActivity implemen
     }
 
     protected void applyForwardTransition() {
-        TransitionHelper.applyForwardTransition(this, DEFAULT_TRANSITION, true);
+        final int transition = SetupWizardUtils.getTransitionTypeForAction(getWizardActionId());
+        TransitionHelper.applyForwardTransition(this, transition, true);
     }
 
     protected void applyBackwardTransition() {
-        TransitionHelper.applyBackwardTransition(BaseSetupWizardActivity.this,
-                DEFAULT_TRANSITION, true);
+        final int transition = SetupWizardUtils.getTransitionTypeForAction(getWizardActionId());
+        TransitionHelper.applyBackwardTransition(BaseSetupWizardActivity.this, transition, true);
+    }
+
+    protected String getWizardActionId() {
+        final Bundle wizardBundle = getIntent().getBundleExtra(EXTRA_WIZARD_BUNDLE);
+        if (wizardBundle == null) {
+            return null;
+        }
+        return wizardBundle.getString(EXTRA_ACTION_ID);
+    }
+
+    private void updateSetupStepIndicator() {
+        final int stepIndex = SetupWizardUtils.getSetupStepIndex(getWizardActionId());
+        if (stepIndex >= 0) {
+            mNavigationBar.setSetupProgress(stepIndex, SetupWizardUtils.SETUP_GLIF_STEP_COUNT);
+        } else {
+            mNavigationBar.setSetupProgress(-1, 0);
+        }
     }
 
     protected final class StartDecoratedActivityForResult

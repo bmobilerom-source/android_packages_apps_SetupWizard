@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 BMobile contributors
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- Matches SetupWizardAnimationHelper intro parallax (25% of hero width). -->
+    <fraction name="intro_hero_parallax_reserve">28%</fraction>
+</resources>

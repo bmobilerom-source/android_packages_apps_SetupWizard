@@ -1,28 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
      SPDX-FileCopyrightText: 2021-2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2026 BMobile contributors
      SPDX-License-Identifier: Apache-2.0
 -->
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/setup_nav_padding_horizontal"
+    android:paddingEnd="@dimen/setup_nav_padding_horizontal"
+    android:paddingTop="@dimen/intro_footer_spacing"
+    android:paddingBottom="@dimen/setup_nav_padding_bottom">
 
-    <Button
-        android:id="@+id/navbar_skip"
-        android:layout_width="wrap_content"
+    <org.lineageos.setupwizard.StepIndicatorView
+        android:id="@+id/setup_step_indicator"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:text="@string/skip"
-        android:visibility="gone"
-        style="@style/SudGlifButton.Secondary" />
+        android:layout_marginBottom="@dimen/intro_footer_spacing"
+        android:visibility="gone" />
 
-    <Button
-        android:id="@+id/navbar_next"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:text="@string/next"
-        style="@style/SudGlifButton.Primary" />
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/navbar_skip"
+            style="@style/SudGlifButton.Secondary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/skip"
+            android:visibility="gone" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/navbar_next"
+            style="@style/SetupOnboardingPillButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/next" />
+    </LinearLayout>
+</LinearLayout>

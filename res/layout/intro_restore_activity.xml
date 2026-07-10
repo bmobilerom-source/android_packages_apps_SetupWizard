@@ -2,6 +2,7 @@
 <!--
      SPDX-FileCopyrightText: 2015 The CyanogenMod Project
      SPDX-FileCopyrightText: 2017-2022 The LineageOS Project
+     SPDX-FileCopyrightText: 2026 BMobile contributors
      SPDX-License-Identifier: Apache-2.0
 -->
 <com.google.android.setupdesign.GlifLayout
@@ -12,16 +13,54 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:orientation="vertical"
+        style="@style/SudContentFrame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        style="@style/SudContentFrame">
+        android:orientation="vertical">
 
-        <View
+        <FrameLayout
             android:id="@+id/page"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_weight="1">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:fillViewport="true"
+                android:paddingBottom="@dimen/setup_card_margin_bottom">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/setup_card_margin_horizontal"
+                    android:layout_marginTop="@dimen/setup_card_margin_top"
+                    android:layout_marginEnd="@dimen/setup_card_margin_horizontal"
+                    android:background="@drawable/setup_onboarding_card_bg"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="@dimen/setup_card_padding">
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/restore_hero_lottie"
+                        android:layout_width="@dimen/setup_hero_size"
+                        android:layout_height="@dimen/setup_hero_size"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="true"
+                        app:lottie_rawRes="@raw/intro_restore" />
+
+                    <TextView
+                        android:id="@+id/restore_card_hint"
+                        style="@style/SetupOnboardingCardBody"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/setup_card_section_spacing"
+                        android:gravity="center" />
+
+                </LinearLayout>
+            </ScrollView>
+        </FrameLayout>
 
         <org.lineageos.setupwizard.NavigationLayout
             android:id="@+id/navigation_bar"

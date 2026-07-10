@@ -102,6 +102,19 @@
         </activity>
 
         <activity
+            android:name=".BmobileIntroActivity"
+            android:label="@string/activity_label_empty"
+            android:configChanges="mcc|mnc"
+            android:immersive="true"
+            android:exported="false"
+            android:windowSoftInputMode="stateAlwaysHidden">
+            <intent-filter>
+                <action android:name="org.lineageos.setupwizard.LINEAGE_INTRO" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
             android:name=".WelcomeActivity"
             android:label="@string/activity_label_empty"
             android:configChanges="mcc|mnc"

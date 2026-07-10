@@ -7,6 +7,13 @@
 <resources>
     <color name="lineage_accent">#167C80</color>
 
+    <color name="setup_page_background">#F4F7FB</color>
+    <color name="setup_card_surface">#FFFFFF</color>
+    <color name="setup_card_stroke">#1A000000</color>
+    <color name="setup_option_surface">#F8FAFC</color>
+    <color name="setup_hero_circle">#1A167C80</color>
+    <color name="setup_onboarding_body">#99000000</color>
+
     <color name="button_bar_text_enabled">#ff1e1e1e</color>
     <color name="button_bar_text_disabled">#321e1e1e</color>
 

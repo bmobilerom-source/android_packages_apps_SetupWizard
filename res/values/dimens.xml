@@ -20,4 +20,35 @@
     <dimen name="welcome_title_padding_bottom">16dp</dimen>
     <dimen name="welcome_title_line_height">64dp</dimen>
     <dimen name="welcome_accessibility_text_size">20sp</dimen>
+
+    <dimen name="intro_content_padding_horizontal">28dp</dimen>
+    <dimen name="intro_content_padding_top">16dp</dimen>
+    <dimen name="intro_content_padding_bottom">12dp</dimen>
+    <dimen name="intro_hero_max_height">136dp</dimen>
+    <dimen name="intro_hero_max_width">304dp</dimen>
+    <dimen name="intro_hero_size">136dp</dimen>
+    <dimen name="intro_hero_size_bottom">136dp</dimen>
+    <dimen name="intro_hero_margin_top">12dp</dimen>
+    <dimen name="intro_title_margin_top">12dp</dimen>
+    <dimen name="intro_body_margin_top">10dp</dimen>
+    <dimen name="intro_footer_padding_horizontal">24dp</dimen>
+    <dimen name="intro_footer_padding_bottom">24dp</dimen>
+    <dimen name="intro_footer_spacing">12dp</dimen>
+
+    <dimen name="setup_card_margin_horizontal">16dp</dimen>
+    <dimen name="setup_card_margin_top">8dp</dimen>
+    <dimen name="setup_card_margin_bottom">12dp</dimen>
+    <dimen name="setup_card_padding">20dp</dimen>
+    <dimen name="setup_card_corner_radius">16dp</dimen>
+    <dimen name="setup_option_corner_radius">12dp</dimen>
+    <dimen name="setup_option_padding_vertical">14dp</dimen>
+    <dimen name="setup_option_padding_horizontal">16dp</dimen>
+    <dimen name="setup_option_spacing">12dp</dimen>
+    <dimen name="setup_card_section_spacing">20dp</dimen>
+    <dimen name="setup_hero_size">120dp</dimen>
+    <dimen name="setup_hero_icon_size">56dp</dimen>
+    <dimen name="setup_pill_button_radius">24dp</dimen>
+    <dimen name="setup_nav_padding_horizontal">16dp</dimen>
+    <dimen name="setup_nav_padding_bottom">16dp</dimen>
+    <dimen name="setup_nav_button_min_width">120dp</dimen>
 </resources>
