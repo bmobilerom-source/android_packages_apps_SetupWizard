@@ -23,6 +23,9 @@ public final class SetupFeatureHelper {
     public static final String MONET_GALLERY_ACTIVITY =
             "com.android.settings.display.MonetPresetGalleryActivity";
 
+    public static final String KIDSHUB_PACKAGE = "com.bmobile.kidshub";
+    public static final String KIDSHUB_ACTIVITY = "com.bmobile.kidshub.ui.HomeActivity";
+
     private SetupFeatureHelper() {
     }
 
@@ -41,6 +44,10 @@ public final class SetupFeatureHelper {
 
     public static boolean isMonetGalleryAvailable(Context context) {
         return resolveActivity(context, monetGalleryIntent()) != null;
+    }
+
+    public static boolean isKidsHubAvailable(Context context) {
+        return resolveActivity(context, kidsHubIntent()) != null;
     }
 
     public static Intent microgSettingsIntent() {
@@ -66,6 +73,12 @@ public final class SetupFeatureHelper {
         return intent;
     }
 
+    public static Intent kidsHubIntent() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        intent.setClassName(KIDSHUB_PACKAGE, KIDSHUB_ACTIVITY);
+        return intent;
+    }
+
     public static Intent resolveLaunchIntent(Context context, Feature feature) {
         switch (feature) {
             case MICROG:
@@ -81,6 +94,8 @@ public final class SetupFeatureHelper {
                 return davLauncherIntent(context);
             case MONET:
                 return isMonetGalleryAvailable(context) ? monetGalleryIntent() : null;
+            case KIDSHUB:
+                return isKidsHubAvailable(context) ? kidsHubIntent() : null;
             default:
                 return null;
         }
@@ -102,6 +117,7 @@ public final class SetupFeatureHelper {
     public enum Feature {
         MICROG,
         DAV,
-        MONET
+        MONET,
+        KIDSHUB
     }
 }

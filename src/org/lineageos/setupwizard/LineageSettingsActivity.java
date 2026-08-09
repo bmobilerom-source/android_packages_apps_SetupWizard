@@ -9,6 +9,7 @@ package org.lineageos.setupwizard;
 import static org.lineageos.setupwizard.SetupWizardApp.DISABLE_NAV_KEYS;
 import static org.lineageos.setupwizard.SetupWizardApp.KEY_SEND_METRICS;
 import static org.lineageos.setupwizard.SetupWizardApp.SETUP_FEATURE_DAV_DONE;
+import static org.lineageos.setupwizard.SetupWizardApp.SETUP_FEATURE_KIDSHUB_DONE;
 import static org.lineageos.setupwizard.SetupWizardApp.SETUP_FEATURE_MICROG_DONE;
 import static org.lineageos.setupwizard.SetupWizardApp.SETUP_FEATURE_MONET_DONE;
 
@@ -99,6 +100,15 @@ public class LineageSettingsActivity extends BaseSetupWizardActivity {
                     Feature.MONET);
         } else {
             hideFeatureRow(R.id.setup_feature_monet);
+        }
+        if (getResources().getBoolean(R.bool.setup_feature_kidshub_enabled)) {
+            bindFeatureRow(R.id.setup_feature_kidshub,
+                    R.string.setup_feature_kidshub_title,
+                    R.string.setup_feature_kidshub_summary,
+                    SETUP_FEATURE_KIDSHUB_DONE,
+                    Feature.KIDSHUB);
+        } else {
+            hideFeatureRow(R.id.setup_feature_kidshub);
         }
         updateFeatureRowStates();
     }
@@ -192,6 +202,10 @@ public class LineageSettingsActivity extends BaseSetupWizardActivity {
         if (getResources().getBoolean(R.bool.setup_feature_monet_enabled)) {
             updateFeatureStatus(R.id.setup_feature_monet,
                     bundle.getBoolean(SETUP_FEATURE_MONET_DONE));
+        }
+        if (getResources().getBoolean(R.bool.setup_feature_kidshub_enabled)) {
+            updateFeatureStatus(R.id.setup_feature_kidshub,
+                    bundle.getBoolean(SETUP_FEATURE_KIDSHUB_DONE));
         }
     }
 

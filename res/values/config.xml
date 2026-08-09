@@ -13,4 +13,5 @@
     <bool name="setup_feature_microg_enabled">true</bool>
     <bool name="setup_feature_dav_enabled">true</bool>
     <bool name="setup_feature_monet_enabled">true</bool>
+    <bool name="setup_feature_kidshub_enabled">true</bool>
 </resources>

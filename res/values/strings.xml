@@ -76,6 +76,8 @@
     <string name="setup_feature_dav_summary">Sync calendars and contacts with CalDAV and CardDAV</string>
     <string name="setup_feature_monet_title">Monet color presets</string>
     <string name="setup_feature_monet_summary">Pick a Material You color palette for your device</string>
+    <string name="setup_feature_kidshub_title">Kids Hub</string>
+    <string name="setup_feature_kidshub_summary">Set up family tools, permissions, and Safe Alert</string>
     <string name="setup_feature_open">Set up</string>
     <string name="setup_feature_done">Done</string>
     <string name="setup_feature_not_installed">%1$s is not installed on this device</string>

@@ -94,6 +94,13 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/setup_option_spacing" />
 
+                    <include
+                        android:id="@+id/setup_feature_kidshub"
+                        layout="@layout/setup_feature_option"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/setup_option_spacing" />
+
                     <LinearLayout
                         android:id="@+id/nav_keys"
                         android:layout_width="match_parent"
